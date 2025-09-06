@@ -4,11 +4,13 @@ verificaIndice = 0
 
 while True:
 
-    user = "Usuário"
+    user = "servidor1.KLj9UH97BIJ"
     cpu_usage = ps.cpu_percent()
     cpu_count = ps.cpu_count()
     ram_usage = ps.virtual_memory().percent
     disk_usage = ps.disk_usage('/').percent
+    bytes_recv_usage = ps.net_io_counters().bytes_recv
+    packages_recv_usage = ps.net_io_counters().bytes_recv
     active_processes = 0
     timestamp = dt.datetime.now()
 
@@ -18,6 +20,7 @@ while True:
     cpu_usage = round(cpu_usage, 2)
     ram_usage = round(ram_usage, 2)
     disk_usage = round(disk_usage, 2)
+    bytes_recv_usage = round(bytes_recv_usage, 2)
     timestamp = dt.datetime.now().replace(microsecond=0)
 
     print(f'Usuário: {user}')
@@ -27,16 +30,20 @@ while True:
     print(f'Uso do disco: {disk_usage}%')
     print(f'Quantidade de processos em execução no momento: {active_processes}')
     print(f'Timestamp: {timestamp}')
+    print(f'Bytes recebidos pela rede: {bytes_recv_usage}')
+    print(f'Pacotes recebidos pela rede: {packages_recv_usage}')
     print('*'*30)
 
     dados = {
-    "user": ["Guilherme"],
-    "timestamp": [timestamp],
-    "cpu": [cpu_usage],
-    "cpu_count": [cpu_count],
-    "ram": [ram_usage],
-    "disco": [disk_usage],
-    "qtd_processos": [active_processes]
+        "user": [user],
+        "timestamp": [timestamp],
+        "cpu": [cpu_usage],
+        "cpu_count": [cpu_count],
+        "ram": [ram_usage],
+        "disco": [disk_usage],
+        "qtd_processos": [active_processes],
+        "bytes_recv": [bytes_recv_usage],
+        "package_recv": [packages_recv_usage]
     }
 
     df = pd.DataFrame(dados)
