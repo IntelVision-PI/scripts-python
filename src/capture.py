@@ -72,7 +72,7 @@ while True:
 
     print("Top 5 processos por CPU:")
     for i, p in enumerate(top5, 1):
-        print(f"{i}) PID={p['pid']} | Nome={p['name']} | CPU={p['cpu']}%")
+        print(f"{i}) Nome={p['name']} | CPU={p['cpu']}%")
     print('*' * 50)
 
     dados = {
