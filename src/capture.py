@@ -4,13 +4,15 @@ verificaIndice = 0
 
 while True:
 
-    user = "servidor1.KLj9UH97BIJ"
+    user = "servidor1.GUIF8SK4U2"
     cpu_usage = ps.cpu_percent()
     cpu_count = ps.cpu_count()
     ram_usage = ps.virtual_memory().percent
     disk_usage = ps.disk_usage('/').percent
     bytes_recv_usage = ps.net_io_counters().bytes_recv
-    packages_recv_usage = ps.net_io_counters().bytes_recv
+    packages_recv_usage = ps.net_io_counters().packets_recv
+    bytes_sent_usage = ps.net_io_counters().bytes_sent
+    packages_sent_usage = ps.net_io_counters().packets_sent
     active_processes = 0
     timestamp = dt.datetime.now()
 
@@ -32,6 +34,8 @@ while True:
     print(f'Timestamp: {timestamp}')
     print(f'Bytes recebidos pela rede: {bytes_recv_usage}')
     print(f'Pacotes recebidos pela rede: {packages_recv_usage}')
+    print(f'Bytes enviados pela rede: {bytes_sent_usage}')
+    print(f'Pacotes enviados pela rede: {packages_sent_usage}')
     print('*'*30)
 
     dados = {
@@ -43,7 +47,9 @@ while True:
         "disco": [disk_usage],
         "qtd_processos": [active_processes],
         "bytes_recv": [bytes_recv_usage],
-        "package_recv": [packages_recv_usage]
+        "package_recv": [packages_recv_usage],
+        "bytes_sent": [bytes_sent_usage],
+        "package_sent": [packages_sent_usage]
     }
 
     df = pd.DataFrame(dados)
