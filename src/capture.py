@@ -9,15 +9,19 @@ csv_file = "dados_maquina.csv"
 while True:
     user = "servidor6.GUIF8SK4U2"
 
+    # Captura processos e inicializa CPU
     processos_objs = []
     for proc in ps.process_iter(['pid', 'name']):
         try:
-            proc.cpu_percent(None)  
+            proc.cpu_percent(interval=None)  # inicializa
             processos_objs.append(proc)
         except (ps.NoSuchProcess, ps.AccessDenied, ps.ZombieProcess):
             pass
 
-    cpu_usage = ps.cpu_percent(interval=1)
+    # Espera 1 segundo para medir CPU real
+    time.sleep(1)
+
+    cpu_usage = ps.cpu_percent(interval=None)
     cpu_count = ps.cpu_count()
     ram_usage = ps.virtual_memory().percent
     disk_usage = ps.disk_usage('/').percent
@@ -36,45 +40,35 @@ while True:
     ram_usage = round(ram_usage, 2)
     disk_usage = round(disk_usage, 2)
     timestamp = dt.datetime.now().replace(microsecond=0)
-
     active_processes = len(processos_objs)
 
+    # Captura CPU% real de cada processo
     processos_info = []
     for proc in processos_objs:
         try:
-            cpu_p = proc.cpu_percent(None)
-            mem_mb = proc.memory_info().rss / (1024 * 1024)
+            cpu_p = proc.cpu_percent(interval=None) / ps.cpu_count()
             processos_info.append({
                 'name': proc.name(),
-                'cpu': round(cpu_p, 2)
+                'cpu': round(cpu_p, 2),
             })
         except (ps.NoSuchProcess, ps.AccessDenied, ps.ZombieProcess):
             pass
 
+    # Ordena apenas pelo CPU% e pega top 5
     processos_ordenados = sorted(processos_info, key=lambda p: p['cpu'], reverse=True)
-
     top5 = processos_ordenados[:5]
     while len(top5) < 5:
-        top5.append({'pid': None, 'name': None, 'cpu': 0.0, 'mem': 0.0})
+        top5.append({'name': None, 'cpu': 0.0})
 
-    print(f'Usuário: {user}')
-    print(f'Uso da CPU: {cpu_usage}%')
-    print(f'Número de CPUs lógicas no sistema {cpu_count}')
-    print(f'Uso da RAM: {ram_usage}%')
-    print(f'Uso do disco: {disk_usage}%')
-    print(f'Quantidade de processos em execução no momento: {active_processes}')
-    print(f'Timestamp: {timestamp}')
-    print(f'Bytes recebidos pela rede: {bytes_recv_usage}')
-    print(f'Pacotes recebidos pela rede: {packages_recv_usage}')
-    print(f'Bytes enviados pela rede: {bytes_sent_usage}')
-    print(f'Pacotes enviados pela rede: {packages_sent_usage}')
-    print('*'*30)
-
+    # Print
+    print(f'Usuário: {user} | CPU: {cpu_usage}% | CPUs: {cpu_count} | RAM: {ram_usage}% | Disco: {disk_usage}%')
+    print(f'Processos ativos: {active_processes} | Timestamp: {timestamp}')
     print("Top 5 processos por CPU:")
     for i, p in enumerate(top5, 1):
         print(f"{i}) Nome={p['name']} | CPU={p['cpu']}%")
-    print('*' * 50)
+    print('*'*50)
 
+    # Salva no CSV
     dados = {
         "user": [user],
         "timestamp": [timestamp],
