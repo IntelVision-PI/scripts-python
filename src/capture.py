@@ -7,16 +7,20 @@ verificaIndice = 0
 csv_file = "dados_maquina.csv"
 
 while True:
-    user = "servidor6.GUIF8SK4U2"
+    user = "servidor42.LUCHT33RSTA"
 
     # Captura processos e inicializa CPU
     processos_objs = []
     for proc in ps.process_iter(['pid', 'name']):
         try:
-            proc.cpu_percent(interval=None)  # inicializa
-            processos_objs.append(proc)
+            if "System Idle Process" in proc.name():
+                pass
+            else:
+                proc.cpu_percent(interval=None)  # inicializa
+                processos_objs.append(proc)
         except (ps.NoSuchProcess, ps.AccessDenied, ps.ZombieProcess):
             pass
+
 
     # Espera 1 segundo para medir CPU real
     time.sleep(1)
