@@ -13,10 +13,14 @@ while True:
     processos_objs = []
     for proc in ps.process_iter(['pid', 'name']):
         try:
-            proc.cpu_percent(interval=None)  # inicializa
-            processos_objs.append(proc)
+            if "System Idle Process" in proc.name():
+                pass
+            else:
+                proc.cpu_percent(interval=None)  # inicializa
+                processos_objs.append(proc)
         except (ps.NoSuchProcess, ps.AccessDenied, ps.ZombieProcess):
             pass
+
 
     # Espera 1 segundo para medir CPU real
     time.sleep(1)
@@ -27,6 +31,19 @@ while True:
     disk_usage = ps.disk_usage('/').percent
     disk_size = round(ps.disk_usage('/').total/1024**3,2 )
     bytes_recv_usage = ps.net_io_counters().bytes_recv
+    packages_recv_usage = ps.net_io_counters().bytes_recv
+    bytes_sent_usage = ps.net_io_counters().bytes_sent
+    packages_sent_usage = ps.net_io_counters().packets_sent
+    
+    active_processes = 0
+    timestamp = dt.datetime.now()
+
+    for proc in ps.process_iter(['name']):
+        active_processes += 1
+
+    cpu_usage = round(cpu_usage, 2)
+    ram_usage = round(ram_usage, 2)
+    disk_usage = round(disk_usage, 2)
     packages_recv_usage = ps.net_io_counters().bytes_recv
     bytes_sent_usage = ps.net_io_counters().bytes_sent
     packages_sent_usage = ps.net_io_counters().packets_sent
@@ -83,6 +100,9 @@ while True:
         "disco_size": [disk_size],
         "qtd_processos": [active_processes],
         "bytes_recv": [bytes_recv_usage],
+        "package_recv": [packages_recv_usage],
+        "bytes_sent": [bytes_sent_usage],
+        "package_sent": [packages_sent_usage]
         "package_recv": [packages_recv_usage],
         "bytes_sent": [bytes_sent_usage],
         "package_sent": [packages_sent_usage]

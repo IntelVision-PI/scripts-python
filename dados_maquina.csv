@@ -1,0 +1,3 @@
+user;timestamp;cpu;cpu_count;ram;disco;qtd_processos;bytes_recv;package_recv;bytes_sent;package_sent;proc1_name;proc1_cpu_pct;proc2_name;proc2_cpu_pct;proc3_name;proc3_cpu_pct;proc4_name;proc4_cpu_pct;proc5_name;proc5_cpu_pct
+servidor6.GUIF8SK4U2;2025-10-01 13:00:35;6.4;4;66.0;66.6;272;242435691;242435691;38162196;149314;python3;8.2;code;6.4;gnome-shell;5.4;code;2.7;kworker/u16:29-kvfree_rcu_reclaim;2.7
+servidor6.GUIF8SK4U2;2025-10-01 13:00:46;4.3;4;65.8;66.6;272;242451403;242451403;38164355;149329;code;11.1;python3;7.4;kworker/u16:0-flush-8:16;1.9;code;1.9;mongod;0.9
