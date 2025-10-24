@@ -30,7 +30,8 @@ while True:
     ram_usage = ps.virtual_memory().percent
     disk_usage = ps.disk_usage('/').percent
     bytes_recv_usage = ps.net_io_counters().bytes_recv
-    packages_recv_usage = ps.net_io_counters().bytes_recv
+    # packages_recv_usage = ps.net_io_counters().bytes_recv
+    packages_recv_usage = ps.net_io_counters().packets_recv
     bytes_sent_usage = ps.net_io_counters().bytes_sent
     packages_sent_usage = ps.net_io_counters().packets_sent
     
