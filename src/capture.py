@@ -103,7 +103,7 @@ while True:
         "bytes_recv": [bytes_recv_usage],
         "package_recv": [packages_recv_usage],
         "bytes_sent": [bytes_sent_usage],
-        "package_sent": [packages_sent_usage]
+        "package_sent": [packages_sent_usage],
         "package_recv": [packages_recv_usage],
         "bytes_sent": [bytes_sent_usage],
         "package_sent": [packages_sent_usage]
