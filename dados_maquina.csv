@@ -1,5 +1,0 @@
-user;timestamp;cpu;cpu_count;ram;disco;qtd_processos;bytes_recv;package_recv;bytes_sent;package_sent;proc1_name;proc1_cpu_pct;proc2_name;proc2_cpu_pct;proc3_name;proc3_cpu_pct;proc4_name;proc4_cpu_pct;proc5_name;proc5_cpu_pct
-servidor42.LUCHT33RSTA;2025-10-23 14:50:47;37.3;8;54.1;42.1;278;78305610;78305610;29315718;64087;python.exe;4.85;Taskmgr.exe;4.04;MsMpEng.exe;1.73;dwm.exe;1.4;svchost.exe;1.25
-servidor42.LUCHT33RSTA;2025-10-23 14:51:00;37.8;8;53.8;42.1;278;78340177;78340243;29332139;64120;python.exe;6.1;services.exe;4.15;Code.exe;3.08;Taskmgr.exe;2.89;Code.exe;2.45
-servidor42.LUCHT33RSTA;2025-10-23 14:51:13;29.6;8;53.6;42.1;278;78368600;78368600;29337078;64165;python.exe;5.26;Taskmgr.exe;4.59;MsMpEng.exe;1.52;dwm.exe;1.23;System;1.19
-servidor42.LUCHT33RSTA;2025-10-23 14:51:26;36.2;8;53.6;42.1;278;78410052;78410052;29339937;64178;python.exe;5.94;Taskmgr.exe;4.58;dwm.exe;3.26;MsMpEng.exe;2.98;explorer.exe;2.33

@@ -4,10 +4,10 @@ import datetime as dt
 import time
 
 verificaIndice = 0
-csv_file = "dados_maquina.csv"
+csv_file = "dados_maquina_teste.csv"
 
 while True:
-    user = "servidor6.NICOLASF8SK4U2"
+    user = "SRV001.LUCASF8SK4U2"
 
     # Captura processos e inicializa CPU
     processos_objs = []
@@ -45,7 +45,7 @@ while True:
     cpu_usage = round(cpu_usage, 2)
     ram_usage = round(ram_usage, 2)
     disk_usage = round(disk_usage, 2)
-    packages_recv_usage = ps.net_io_counters().bytes_recv
+    packages_recv_usage = ps.net_io_counters().packets_recv
     bytes_sent_usage = ps.net_io_counters().bytes_sent
     packages_sent_usage = ps.net_io_counters().packets_sent
     
