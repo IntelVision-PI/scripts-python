@@ -4,7 +4,7 @@ import datetime as dt
 import time
 
 verificaIndice = 0
-csv_file = "dados_maquina_teste.csv"
+csv_file = "dados_maquina.csv"
 
 while True:
     user = "SRV001.LUCASF8SK4U2"
