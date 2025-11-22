@@ -87,7 +87,7 @@ def upload_file(file_name, bucket):
     mes = agora.strftime("%m")
     dia = agora.strftime("%d")
 
-    nome_s3 = f"dados_maquina_{ano}-{mes}-{dia}.csv"
+    nome_s3 = f"dados_maquina_{ano}-{mes}-{dia}-{user}.csv"
     object_name = f"{ano}/{mes}/{dia}/{nome_s3}"
 
     s3_client = boto3.client('s3')
