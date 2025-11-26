@@ -16,7 +16,7 @@ user = "servidor6.NICOLASF8SK4U2"
 bucket_name = "my-bucket-raw-sptech-nicolas"
 
 def upload_file(file_name, bucket):
-    agora = dt.datetime.now()
+    agora = dt.datetime.now() - dt.timedelta(days=1)
     ano = agora.strftime("%Y")
     mes = agora.strftime("%m")
     dia = agora.strftime("%d")
